@@ -3,7 +3,7 @@ body {
 }
 .jumbotron {
   padding-top: 6rem;
-  background-color: #fffae2;
+  background-color: url('./img/1.png');
 }
 
 #Berita {
