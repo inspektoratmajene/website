@@ -37,17 +37,17 @@ section {
   height: 46px;
   color: #fff;
   font-size: 20px;
-  border: 1px solid #fff;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
+  border: 1px solid#fff;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(-0deg);
   padding-top: 8px;
 }
 
 .icon-project i {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
 }
 
 .single-project-area {
