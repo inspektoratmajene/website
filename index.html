@@ -16,7 +16,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="style.css" />
 
-    <title>Website Resmi | Inspektorat Majene</title>
+    <title>Website | Inspektorat Majene</title>
   </head>
   <body id="home">
     <!-- Navbar -->
@@ -94,7 +94,9 @@
             <div class="card">
               <img src="img/Berita/1.png" class="card-img-top" alt="berita1" />
               <div class="card-body">
-                <p class="card-text">26/02/2025. Inspektorat melaksanakan pengecekan fisik dalam rangka reviu utang yang sedang dilaksanakan guna memastikan keandalan antara dokumen dan pekerjaan fisik yang ada dilapangan.
+                <p class="card-text">Inspektorat melakukan pengecekan fisik dalam rangka reviu utang yang sedang dilaksanakan guna memastikan keandalan antara dokumen dan pekerjaan fisik yang ada dilapangan.
+
+                  26-02-2025
                 </p>
               </div>
             </div>
@@ -111,7 +113,7 @@
             <div class="card">
               <img src="img/Berita/3.png" class="card-img-top" alt="berita1" />
               <div class="card-body">
-                <p class="card-text">Segenap keluarga besar Inspektorat mengucapkan selamat menunaikan ibadah puasa 1446H.</p>
+                <p class="card-text">Segenap keluarga besar Inspektorat mengucapkan selamat menjalankan ibadah puasa 1446H.</p>
               </div>
             </div>
           </div>
@@ -132,9 +134,9 @@
         <div class="row justify-content-center fs-5 text-center">
           <div class="col-md-4">
             <div class="card">
-              <img src="img/phonto.png" class="card-img-top" alt="Pelayanan1" />
+              <img src="img/bebastemuang.png" class="card-img-top" alt="Pelayanan1" />
               <div class="card-body">
-                <h5 class="card-title">BEBAS TEMUAN</h5>
+                <h5 class="card-title">Bebas Temuan</h5>
                 <p class="card-text">Permohonan Bebas Temuan, Izin Perceraian, Pindah Tugas, Kenaikan Pangkat, Gaji Berkala dan Pensiun.</p>
                 <a href="https://s.id/itdamajene" class="btn btn-primary">Selengkapnya</a>
               </div>
@@ -224,16 +226,25 @@
       <div class="row">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <div class="contact-form">
-            <form>
+            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+              <strong>Terimakasih!</strong> Pesan anda sudah kami terima.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form name="Kontak-Form">
               <div class="form-group">
-                <input class="form-control" placeholder="Nama Anda" type="text">
+                <input class="form-control" placeholder="Nama Anda" type="text" name="nama">
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Email Anda" type="email">
+                <input class="form-control" placeholder="Email Anda" type="email" name="email">
               </div>
               <div class="form-group">
-                <textarea class="form-control" cols="30" placeholder="Pesan Anda" rows="10"></textarea>
-              </div><button class="btn" type="submit">Kirim</button>
+                <textarea class="form-control" cols="30" placeholder="Pesan Anda" name="pesan" rows="10"></textarea>
+              </div><button class="btn btn-kirim" type="submit">Kirim</button>
+
+              <button class="btn btn-loading d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
             </form>
           </div>
         </div>
@@ -278,5 +289,33 @@
   gsap.from('.display-4', {duration: 1, x: -50, opacity: 0, delay: 0.5})
 </script>
 
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwdGzS3ga24wZba7Jlg0do7CBkFbgJx_SUXP6L8t9ChlBVMklzjDIZhxmJAQ2W5OZ_Z6A/exec'
+  const form = document.forms["Kontak-Form"];
+  const btnKirim = document.querySelector('.btn-kirim');
+  const btnLoading = document.querySelector('.btn-loading');
+  const myAlert = document.querySelector('.my-alert');
+
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    //ketika tombol submit diklik
+    //tampilkan tombol loading, hilangkan tombol kirim
+    btnLoading.classList.toggle('d-none');
+    btnKirim.classList.toggle('d-none');
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        //tampilkan tombol kirim, hilangkan tombol loading
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
+        //tampilan alert
+        myAlert.classList.toggle('d-none');
+        //reset formnya
+        form.reset();
+        console.log('Success!', response);
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
   </body>
 </html>
